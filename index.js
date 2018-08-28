@@ -45,7 +45,8 @@ SunsetWx.prototype.login = function (callback) {
     uri: '/login',
     form: {
       email: this.options.email,
-      password: this.options.password
+      password: this.options.password,
+      scope: 'all'
     }
   }, function (err, response, body) {
     if (err) { return callback(err) }
@@ -104,6 +105,14 @@ SunsetWx.prototype.location = function (params, callback) {
   this.__autoAuthRequest({
     method: 'GET',
     uri: '/location',
+    qs: params
+  }, callback)
+}
+
+SunsetWx.prototype.quality = function (params, callback) {
+  this.__autoAuthRequest({
+    method: 'GET',
+    uri: '/quality',
     qs: params
   }, callback)
 }
